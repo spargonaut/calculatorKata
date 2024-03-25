@@ -1,11 +1,11 @@
-#Requirements
+# Requirements
 
 This kata is designed to help you learn test-first coding and refactoring. To that end, try not to read
 ahead or guess what the next requirements might be. Work incrementally, and complete as many
 steps as you can in a 30 minutes period. Continue trying the kata from scratch, until you can complete
 it entirely within 30 minutes.
 
-##Steps
+## Steps
 1. Create a StringCalculator with a method Add(string numbers) that returns an integer.
    
    i. Start with the simplest test case of an empty string, then 1 number, then 2.
@@ -53,6 +53,8 @@ it entirely within 30 minutes.
 8. Allow multiple delimiters, using this syntax: &quot;//[|][%]\n1|2%3&quot; returns 6.
 9. Handle multiple delimiters of any length.
 
+
+  
 # Solution
 
 ### Versions used to develop this application
