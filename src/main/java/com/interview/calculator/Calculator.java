@@ -9,22 +9,29 @@ public class Calculator {
         }
 
         String delimiter = parseDelimiter(values);
-        if (!delimiter.isEmpty()) {
-            String[] separateValues = values.split(delimiter);
+        if (delimiter.isEmpty()) {
+            return Integer.parseInt(values);
+        } else {
+            String cleanValues = cleanDelimiters(values, delimiter);
+            String[] separateValues = cleanValues.split(delimiter);
             return Arrays.stream(separateValues)
                     .mapToInt(Integer::parseInt)
                     .sum();
         }
-        return Integer.parseInt(values);
     }
 
     private String parseDelimiter(String values) {
-        if (values.contains(",")) {
+        if (values.startsWith("//")) {
+            return values.substring(2, 3);
+        } else if (values.contains(",") || values.contains("\n")) {
             return ",";
         }
-        if (values.contains("\n")) {
-            return "\n";
-        }
         return "";
+    }
+
+    private String cleanDelimiters(String values, String delimiter) {
+        String delimiterPrefix = "//" + delimiter + "\n";
+        String valuesPrefixRemoved = values.replaceFirst(delimiterPrefix, "");
+        return valuesPrefixRemoved.replace("\n", delimiter);
     }
 }

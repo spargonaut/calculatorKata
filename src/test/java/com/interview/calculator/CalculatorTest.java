@@ -65,4 +65,9 @@ public class CalculatorTest {
     public void shouldAddMultipleIntegersWhenSeparatedByNewLines() {
         assertEquals(6, calculator.add("1\n2\n3"));
     }
+
+    @Test
+    public void shouldAllowDifferentDelimiterWhenSpecifiedByDelimiterChangeString() {
+        assertEquals(3, calculator.add("//;\n1;2"));
+    }
 }
