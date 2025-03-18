@@ -53,16 +53,19 @@ public class CalculatorApplication implements CommandLineRunner
         }
 
         String delimiter = ",";
-        if (inputValue.contains(START) && !inputValue.contains("[")) {
-            delimiter = ";";
-            inputValue = inputValue.replace(NEW_LINE, delimiter).replace(START, EMPTY_STRING);
-        } else if (inputValue.contains(START) && inputValue.contains("[")) {
-            String delimiters = inputValue
-                    .substring(inputValue.indexOf(START) + 2, inputValue.indexOf(NEW_LINE))
-                    .replace("][", EMPTY_STRING);
-            String data = inputValue.substring(inputValue.indexOf(NEW_LINE) + 2);
-            delimiter = delimiters;
-            inputValue = data;
+        if (inputValue.contains(START)) {
+            if (!inputValue.contains("[")) {
+
+                delimiter = ";";
+                inputValue = inputValue.replace(NEW_LINE, delimiter).replace(START, EMPTY_STRING);
+            } else {
+                String delimiters = inputValue
+                        .substring(inputValue.indexOf(START) + 2, inputValue.indexOf(NEW_LINE))
+                        .replace("][", EMPTY_STRING);
+                String data = inputValue.substring(inputValue.indexOf(NEW_LINE) + 2);
+                delimiter = delimiters;
+                inputValue = data;
+            }
         } else {
             inputValue = inputValue.replace(NEW_LINE, delimiter);
         }
