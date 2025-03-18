@@ -55,4 +55,9 @@ public class CalculatorTest {
     public void shouldAddMultipleIntegersWhenSeparatedByAComma() {
         assertEquals(15, calculator.add("1,2,3,4,5"));
     }
+
+    @Test
+    public void shouldAddTwoIntegersWhenSeparatedByNewLines() {
+        assertEquals(3, calculator.add("1\n2"));
+    }
 }

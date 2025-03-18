@@ -7,12 +7,24 @@ public class Calculator {
         if (values == null || values.isEmpty()) {
             return 0;
         }
-        if (values.contains(",")) {
-            String[] separateValues = values.split(",");
+
+        String delimiter = parseDelimiter(values);
+        if (!delimiter.isEmpty()) {
+            String[] separateValues = values.split(delimiter);
             return Arrays.stream(separateValues)
                     .mapToInt(Integer::parseInt)
                     .sum();
         }
         return Integer.parseInt(values);
+    }
+
+    private String parseDelimiter(String values) {
+        if (values.contains(",")) {
+            return ",";
+        }
+        if (values.contains("\n")) {
+            return "\n";
+        }
+        return "";
     }
 }
