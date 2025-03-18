@@ -5,7 +5,6 @@ public class Calculator {
         if (values == null || values.isEmpty()) {
             return 0;
         }
-        throw new NumberFormatException();
+        return Integer.parseInt(values);
     }
-
 }

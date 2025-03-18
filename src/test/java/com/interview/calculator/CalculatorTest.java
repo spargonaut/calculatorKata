@@ -42,4 +42,14 @@ public class CalculatorTest {
                 () -> calculator.add("a")
         );
     }
+
+    @Test
+    public void shouldProduceTheSameIntegerWhenGivenASingleIntegerString() {
+        Calculator calculator = new Calculator();
+
+        int actualResult = calculator.add("5");
+
+        int expectedResult = 5;
+        assertEquals(expectedResult, actualResult);
+    }
 }
