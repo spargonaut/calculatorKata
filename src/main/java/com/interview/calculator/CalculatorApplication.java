@@ -28,19 +28,15 @@ public class CalculatorApplication implements CommandLineRunner
     @Override
     public void run(String... args)
     {
-        if (args == null || args.length == 0)
-        {
+        if (args == null || args.length == 0) {
             System.out.println(THE_RESULT_FOR_THE_SUM_IS + 0);
-        } else
-        {
-            try
-            {
+        } else {
+            try {
                 int result = calculator(args[0]);
                 System.out.println(THE_RESULT_FOR_THE_SUM_IS + result);
-            } catch (NegativeNumbersException e)
-            {
+            } catch (NegativeNumbersException e) {
                 System.out.println(e.getMessage());
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(AT_LEAST_ONE_VALUE_CAN_T_BE_CONVERTED_TO_A_NUMBER);
             }
         }
@@ -48,37 +44,32 @@ public class CalculatorApplication implements CommandLineRunner
 
     private int calculator(String inputValue) throws Exception
     {
-        if (inputValue.isEmpty())
-        {
+        if (inputValue.isEmpty()) {
             return 0;
-        } else if (inputValue.length() == 1)
-        {
-            if (isNumber(inputValue))
-            {
+        } else if (inputValue.length() == 1) {
+            if (isNumber(inputValue)) {
                 return Integer.parseInt(inputValue);
             }
         }
+
         String delimiter = ",";
-        if (inputValue.contains(START) && !inputValue.contains("["))
-        {
+        if (inputValue.contains(START) && !inputValue.contains("[")) {
             delimiter = ";";
             inputValue = inputValue.replace(NEW_LINE, delimiter).replace(START, EMPTY_STRING);
-        } else if (inputValue.contains(START) && inputValue.contains("["))
-        {
+        } else if (inputValue.contains(START) && inputValue.contains("[")) {
             String delimiters = inputValue
                     .substring(inputValue.indexOf(START) + 2, inputValue.indexOf(NEW_LINE))
                     .replace("][", EMPTY_STRING);
             String data = inputValue.substring(inputValue.indexOf(NEW_LINE) + 2);
             delimiter = delimiters;
             inputValue = data;
-        } else
-        {
+        } else {
             inputValue = inputValue.replace(NEW_LINE, delimiter);
         }
+
         List<String> values = Arrays.asList(inputValue.split(delimiter));
 
-        if (isNumber(values))
-        {
+        if (isNumber(values)) {
             values = values.stream()
                     .filter(value -> !value.isEmpty() && Integer.parseInt(value) <= MAX_INT_ALLOWED)
                     .collect(Collectors.toList());
@@ -86,81 +77,69 @@ public class CalculatorApplication implements CommandLineRunner
             List<String> negativeValues = values.stream()
                     .filter(value -> Integer.parseInt(value) < 0)
                     .collect(Collectors.toList());
-            try
-            {
-                if (!negativeValues.isEmpty())
-                {
+
+            try {
+                if (!negativeValues.isEmpty()) {
                     throw new NegativeNumbersException();
                 }
+
                 return sum(values);
-            } catch (NegativeNumbersException e)
-            {
+            } catch (NegativeNumbersException e) {
                 e.setMessage(NEGATIVES_NOT_ALLOWED + negativeValues);
                 throw e;
             }
         }
+
         throw new Exception();
     }
 
-    private int sum(List<String> values)
-    {
+    private int sum(List<String> values) {
         int result = 0;
-        for (String value : values)
-        {
+        for (String value : values) {
             int valueInt = Integer.parseInt(value);
             result = result + valueInt;
         }
+
         return result;
     }
 
-    private boolean isNumber(List<String> values) throws NumberFormatException
-    {
+    private boolean isNumber(List<String> values) throws NumberFormatException {
         boolean areNumbers = true;
-        for (String value : values)
-        {
-            try
-            {
+        for (String value : values) {
+            try {
                 isNumber(value);
-            } catch (NumberFormatException e)
-            {
+            } catch (NumberFormatException e) {
                 areNumbers = false;
                 break;
             }
         }
+
         return areNumbers;
     }
 
-    private boolean isNumber(String value) throws NumberFormatException
-    {
-        if (value.isEmpty())
-        {
+    private boolean isNumber(String value) throws NumberFormatException {
+        if (value.isEmpty()) {
             return false;
         }
-        try
-        {
+
+        try {
             Integer.parseInt(value);
             return true;
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private static class NegativeNumbersException extends Exception
-    {
+    private static class NegativeNumbersException extends Exception {
         public String message;
 
-        public NegativeNumbersException()
-        {
-        }
+        public NegativeNumbersException() {}
 
-        public String getMessage()
-        {
+        public String getMessage() {
             return message;
         }
 
-        public void setMessage(String message)
-        {
+        public void setMessage(String message) {
             this.message = message;
         }
     }
