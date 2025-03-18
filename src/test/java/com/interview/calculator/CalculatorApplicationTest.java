@@ -71,35 +71,35 @@ class CalculatorApplicationTest
     void runShouldReturnMessageWhenContainsNegativeNumbers()
     {
         app.run("2,-4,3,-5");
-        assertEquals(CalculatorApplication.NEGATIVES_NOT_ALLOWED+ "[-4, -5]", outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.NEGATIVES_NOT_ALLOWED + "[-4, -5]", outputStreamCaptor.toString().trim());
     }
 
     @Test
     void runShouldSumNumbersIgnoringGreaterThan1000()
     {
         app.run("1,2,3,1001,4");
-        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS+ 10, outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS + 10, outputStreamCaptor.toString().trim());
     }
 
     @Test
     void runShouldSumNumbersWithDelimiterAnyLength()
     {
         app.run("//[|||]\\n1|||2|||3");
-        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS+ 6, outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS + 6, outputStreamCaptor.toString().trim());
     }
 
     @Test
     void runShouldSumNumbersWithMultiDelimiter()
     {
         app.run("//[|][%]\\n1|2%3");
-        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS+ 6, outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS + 6, outputStreamCaptor.toString().trim());
     }
 
     @Test
     void runShouldSumNumbersWithMultiDelimiterAnyLength()
     {
         app.run("//[|][%]\\n1|||||2%%%3");
-        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS+ 6, outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS + 6, outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -119,6 +119,6 @@ class CalculatorApplicationTest
     void runShouldReturn0WhenEmptyString()
     {
         app.run("");
-        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS+0, outputStreamCaptor.toString().trim());
+        assertEquals(CalculatorApplication.THE_RESULT_FOR_THE_SUM_IS + 0, outputStreamCaptor.toString().trim());
     }
 }
