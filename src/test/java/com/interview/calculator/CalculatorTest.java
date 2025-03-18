@@ -1,42 +1,40 @@
 package com.interview.calculator;
 
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class CalculatorTest {
+
+    private Calculator calculator;
+
+    @BeforeAll
+    public void setup() {
+        calculator = new Calculator();
+    }
 
     @Test
     public void shouldCreateACalculatorInstance() {
-        Calculator calculator = new Calculator();
         assertNotNull(calculator);
     }
 
     @Test
     public void shouldProduceZeroWhenGivenNull() {
-        Calculator calculator = new Calculator();
-
-        int actualResult = calculator.add(null);
-
-        int expectedResult = 0;
-        assertEquals(expectedResult, actualResult);
+        assertEquals(0, calculator.add(null));
     }
 
     @Test
     public void shouldProduceZeroWhenGivenAnEmptyString() {
-        Calculator calculator = new Calculator();
-
-        int actualResult = calculator.add("");
-
-        int expectedResult = 0;
-        assertEquals(expectedResult, actualResult);
+        assertEquals(0, calculator.add(""));
     }
 
     @Test
     public void shouldThrowWhenGivenANonNumericCharacter() {
-        Calculator calculator = new Calculator();
-
         assertThrows(
                 NumberFormatException.class,
                 () -> calculator.add("a")
@@ -45,11 +43,6 @@ public class CalculatorTest {
 
     @Test
     public void shouldProduceTheSameIntegerWhenGivenASingleIntegerString() {
-        Calculator calculator = new Calculator();
-
-        int actualResult = calculator.add("5");
-
-        int expectedResult = 5;
-        assertEquals(expectedResult, actualResult);
+        assertEquals(5, calculator.add("5"));
     }
 }
