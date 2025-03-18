@@ -18,9 +18,9 @@ public class CalculatorTest {
     public void shouldProduceZeroWhenGivenNull() {
         Calculator calculator = new Calculator();
 
-        String actualResult = calculator.add(null);
+        int actualResult = calculator.add(null);
 
-        String expectedResult = "0";
+        int expectedResult = 0;
         assertEquals(expectedResult, actualResult);
     }
 }

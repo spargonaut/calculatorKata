@@ -1,7 +1,7 @@
 package com.interview.calculator;
 
 public class Calculator {
-    public String add(String values) {
-        return "0";
+    public int add(String values) {
+        return 0;
     }
 }
