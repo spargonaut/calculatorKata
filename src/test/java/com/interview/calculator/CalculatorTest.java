@@ -23,4 +23,14 @@ public class CalculatorTest {
         int expectedResult = 0;
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void shouldProduceZeroWhenGivenAnEmptyString() {
+        Calculator calculator = new Calculator();
+
+        int actualResult = calculator.add("");
+
+        int expectedResult = 0;
+        assertEquals(expectedResult, actualResult);
+    }
 }
