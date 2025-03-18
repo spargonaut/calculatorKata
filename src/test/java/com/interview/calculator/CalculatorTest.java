@@ -60,4 +60,9 @@ public class CalculatorTest {
     public void shouldAddTwoIntegersWhenSeparatedByNewLines() {
         assertEquals(3, calculator.add("1\n2"));
     }
+
+    @Test
+    public void shouldAddMultipleIntegersWhenSeparatedByNewLines() {
+        assertEquals(6, calculator.add("1\n2\n3"));
+    }
 }
