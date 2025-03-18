@@ -76,7 +76,7 @@ public class CalculatorApplication implements CommandLineRunner
 
             List<String> negativeValues = values.stream()
                     .filter(value -> Integer.parseInt(value) < 0)
-                    .collect(Collectors.toList());
+                    .toList();
 
             try {
                 if (!negativeValues.isEmpty()) {
