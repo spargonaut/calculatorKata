@@ -2,6 +2,10 @@ package com.interview.calculator;
 
 public class Calculator {
     public int add(String values) {
-        return 0;
+        if (values == null || values.isEmpty()) {
+            return 0;
+        }
+        throw new NumberFormatException();
     }
+
 }

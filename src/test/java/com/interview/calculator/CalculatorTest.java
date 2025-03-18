@@ -3,8 +3,7 @@ package com.interview.calculator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
@@ -32,5 +31,15 @@ public class CalculatorTest {
 
         int expectedResult = 0;
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldThrowWhenGivenANonNumericCharacter() {
+        Calculator calculator = new Calculator();
+
+        assertThrows(
+                NumberFormatException.class,
+                () -> calculator.add("a")
+        );
     }
 }
