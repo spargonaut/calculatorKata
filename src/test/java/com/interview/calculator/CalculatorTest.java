@@ -45,4 +45,9 @@ public class CalculatorTest {
     public void shouldProduceTheSameIntegerWhenGivenASingleIntegerString() {
         assertEquals(5, calculator.add("5"));
     }
+
+    @Test
+    public void shouldAddTwoIntegersWhenSeparatedByAComma() {
+        assertEquals(3, calculator.add("1,2"));
+    }
 }
