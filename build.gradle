@@ -41,3 +41,7 @@ tasks.withType(JavaCompile).configureEach {
 tasks.withType(Javadoc).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.test {
+    useJUnitPlatform()
+}
