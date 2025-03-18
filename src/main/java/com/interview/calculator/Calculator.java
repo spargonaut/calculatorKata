@@ -1,5 +1,7 @@
 package com.interview.calculator;
 
+import java.util.Arrays;
+
 public class Calculator {
     public int add(String values) {
         if (values == null || values.isEmpty()) {
@@ -7,9 +9,9 @@ public class Calculator {
         }
         if (values.contains(",")) {
             String[] separateValues = values.split(",");
-            int firstValue = Integer.parseInt(separateValues[0]);
-            int secondValue = Integer.parseInt(separateValues[1]);
-            return firstValue + secondValue;
+            return Arrays.stream(separateValues)
+                    .mapToInt(Integer::parseInt)
+                    .sum();
         }
         return Integer.parseInt(values);
     }
