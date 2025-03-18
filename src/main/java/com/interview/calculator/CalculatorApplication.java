@@ -132,18 +132,4 @@ public class CalculatorApplication implements CommandLineRunner
             return false;
         }
     }
-
-    private static class NegativeNumbersException extends Exception {
-        public String message;
-
-        public NegativeNumbersException() {}
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-    }
 }
