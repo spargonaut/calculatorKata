@@ -78,4 +78,12 @@ public class CalculatorTest {
                 () -> calculator.add("-1")
         );
     }
+
+    @Test
+    public void shouldThrowWhenGivenANegativeNumberAsPartOfMultipleNumbers() {
+        assertThrows(
+                NegativeNumbersException.class,
+                () -> calculator.add("2,-1")
+        );
+    }
 }

@@ -19,9 +19,20 @@ public class Calculator {
         } else {
             String cleanValues = cleanDelimiters(values, delimiter);
             String[] separateValues = cleanValues.split(delimiter);
-            return Arrays.stream(separateValues)
+            int[] parsedInts = Arrays.stream(separateValues)
                     .mapToInt(Integer::parseInt)
+                    .toArray();
+
+            Arrays.stream(parsedInts)
+                    .filter(value -> value < 0)
+                    .findAny()
+                    .ifPresent(value -> {
+                        throw new NegativeNumbersException();
+                    });
+
+            return Arrays.stream(parsedInts)
                     .sum();
+
         }
     }
 
