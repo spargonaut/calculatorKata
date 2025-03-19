@@ -10,7 +10,12 @@ public class Calculator {
 
         String delimiter = parseDelimiter(values);
         if (delimiter.isEmpty()) {
-            return Integer.parseInt(values);
+            int parsedValue = Integer.parseInt(values);
+            if (parsedValue >= 0) {
+                return Integer.parseInt(values);
+            } else {
+                throw new NegativeNumbersException();
+            }
         } else {
             String cleanValues = cleanDelimiters(values, delimiter);
             String[] separateValues = cleanValues.split(delimiter);

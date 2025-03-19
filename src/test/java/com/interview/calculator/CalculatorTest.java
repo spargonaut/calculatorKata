@@ -70,4 +70,12 @@ public class CalculatorTest {
     public void shouldAllowDifferentDelimiterWhenSpecifiedByDelimiterChangeString() {
         assertEquals(3, calculator.add("//;\n1;2"));
     }
+
+    @Test
+    public void shouldThrowWhenGivenASingleNegativeNumber() {
+        assertThrows(
+                NegativeNumbersException.class,
+                () -> calculator.add("-1")
+        );
+    }
 }

@@ -1,6 +1,6 @@
 package com.interview.calculator;
 
-public class NegativeNumbersException extends Exception {
+public class NegativeNumbersException extends RuntimeException {
     public String message;
 
     public NegativeNumbersException() {}
